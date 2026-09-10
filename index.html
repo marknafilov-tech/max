@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MAXCIROB</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap');
+
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+
+body{
+
+min-height:100vh;
+
+background:
+radial-gradient(circle at 50% -20%,#444,transparent 40%),
+#050505;
+
+font-family:Inter,sans-serif;
+
+color:white;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+overflow:hidden;
+
+}
+
+
+/* свет за мышью */
+
+.cursor{
+
+position:fixed;
+
+width:400px;
+height:400px;
+
+background:white;
+
+opacity:.07;
+
+filter:blur(120px);
+
+pointer-events:none;
+
+transform:translate(-50%,-50%);
+
+}
+
+
+
+
+.container{
+
+width:440px;
+
+padding:35px;
+
+background:
+
+rgba(255,255,255,.04);
+
+border:
+
+1px solid rgba(255,255,255,.12);
+
+border-radius:35px;
+
+backdrop-filter:blur(25px);
+
+
+box-shadow:
+
+0 30px 100px #000;
+
+
+animation:appear 1s ease;
+
+
+}
+
+
+
+@keyframes appear{
+
+from{
+
+opacity:0;
+
+transform:translateY(40px);
+
+}
+
+}
+
+
+
+.profile{
+
+text-align:center;
+
+}
+
+
+
+.avatar{
+
+width:130px;
+height:130px;
+
+margin:auto;
+
+border-radius:50%;
+
+
+background:
+
+linear-gradient(135deg,#fff,#555);
+
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+
+font-size:45px;
+
+font-weight:900;
+
+
+color:black;
+
+
+position:relative;
+
+}
+
+
+
+.avatar:after{
+
+content:"";
+
+position:absolute;
+
+inset:-6px;
+
+border-radius:50%;
+
+
+border:1px solid #777;
+
+
+animation:rotate 6s linear infinite;
+
+}
+
+
+
+@keyframes rotate{
+
+100%{
+transform:rotate(360deg);
+}
+
+}
+
+
+
+
+h1{
+
+margin-top:25px;
+
+font-size:38px;
+
+letter-spacing:4px;
+
+}
+
+
+
+.desc{
+
+color:#888;
+
+margin-top:8px;
+
+}
+
+
+
+.status{
+
+margin:20px auto;
+
+width:max-content;
+
+padding:8px 18px;
+
+border-radius:30px;
+
+
+background:#111;
+
+border:1px solid #333;
+
+
+font-size:13px;
+
+color:#aaa;
+
+}
+
+
+
+.green{
+
+display:inline-block;
+
+width:8px;
+height:8px;
+
+background:#fff;
+
+border-radius:50%;
+
+margin-right:8px;
+
+box-shadow:0 0 15px white;
+
+}
+
+
+
+
+.links{
+
+margin-top:30px;
+
+display:flex;
+
+flex-direction:column;
+
+gap:15px;
+
+}
+
+
+
+
+
+.card{
+
+height:82px;
+
+padding:15px 20px;
+
+
+display:flex;
+
+align-items:center;
+
+
+text-decoration:none;
+
+color:white;
+
+
+background:
+
+linear-gradient(
+145deg,
+rgba(255,255,255,.09),
+rgba(255,255,255,.02)
+);
+
+
+border:
+
+1px solid rgba(255,255,255,.15);
+
+
+border-radius:22px;
+
+
+transition:.4s;
+
+
+position:relative;
+
+
+transform-style:preserve-3d;
+
+
+}
+
+
+
+
+.card:hover{
+
+transform:
+
+translateY(-7px)
+rotateX(5deg);
+
+
+border-color:#aaa;
+
+
+box-shadow:
+
+0 20px 50px #000,
+0 0 30px #ffffff22;
+
+
+}
+
+
+
+
+
+.icon{
+
+
+width:45px;
+height:45px;
+
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+
+font-size:25px;
+
+
+background:#111;
+
+
+border-radius:15px;
+
+
+margin-right:15px;
+
+
+transition:.4s;
+
+}
+
+
+
+
+.card:hover .icon{
+
+transform:
+
+scale(1.15)
+rotate(-8deg);
+
+
+background:white;
+
+color:black;
+
+}
+
+
+
+
+.info{
+
+text-align:left;
+
+}
+
+
+
+.title{
+
+font-weight:800;
+
+font-size:17px;
+
+}
+
+
+
+.small{
+
+font-size:12px;
+
+color:#777;
+
+margin-top:4px;
+
+}
+
+
+
+
+.arrow{
+
+margin-left:auto;
+
+font-size:25px;
+
+color:#666;
+
+transition:.3s;
+
+}
+
+
+
+.card:hover .arrow{
+
+color:white;
+
+transform:translateX(8px);
+
+}
+
+
+
+
+.footer{
+
+text-align:center;
+
+margin-top:30px;
+
+color:#555;
+
+font-size:12px;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="cursor"></div>
+
+
+<div class="container">
+
+
+<div class="profile">
+
+
+<div class="avatar">
+MR
+</div>
+
+
+<h1>
+MAXCIROB
+</h1>
+
+
+<div class="desc">
+Gaming Creator • YouTube • Community
+</div>
+
+
+<div class="status">
+
+<span class="green"></span>
+
+ONLINE
+
+</div>
+
+
+</div>
+
+
+
+<div class="links">
+
+
+
+<a class="card" href="https://www.youtube.com/@Maxc1ROB">
+
+
+<div class="icon">
+▶
+</div>
+
+
+<div class="info">
+
+<div class="title">
+YouTube
+</div>
+
+<div class="small">
+Main Channel
+</div>
+
+</div>
+
+
+<div class="arrow">
+→
+</div>
+
+
+</a>
+
+
+
+
+
+<a class="card" href="https://discord.gg/XnX6qyP5e5">
+
+
+<div class="icon">
+◉
+</div>
+
+
+<div class="info">
+
+<div class="title">
+Discord
+</div>
+
+<div class="small">
+Join Community
+</div>
+
+</div>
+
+
+<div class="arrow">
+→
+</div>
+
+
+</a>
+
+
+
+
+
+
+<a class="card" href="https://t.me/BlopTopWorld_Maxci">
+
+
+<div class="icon">
+✈
+</div>
+
+
+<div class="info">
+
+<div class="title">
+Telegram
+</div>
+
+<div class="small">
+News & Updates
+</div>
+
+</div>
+
+
+<div class="arrow">
+→
+</div>
+
+
+</a>
+
+
+
+
+
+<a class="card" href="https://www.donationalerts.com/r/maxcirobik">
+
+
+<div class="icon">
+🍩
+</div>
+
+
+<div class="info">
+
+<div class="title">
+Donation
+</div>
+
+<div class="small">
+Support Creator
+</div>
+
+</div>
+
+
+<div class="arrow">
+→
+</div>
+
+
+</a>
+
+
+
+
+
+
+<a class="card" href="https://max.ru/join/xs9-PU9W2uhYylmAN1KED6M-3MCYR1LXyAZ71xetyv8">
+
+
+<div class="icon">
+◆
+</div>
+
+
+<div class="info">
+
+<div class="title">
+MAX
+</div>
+
+<div class="small">
+Official Channel
+</div>
+
+</div>
+
+
+<div class="arrow">
+→
+</div>
+
+
+</a>
+
+
+
+
+</div>
+
+
+<div class="footer">
+MAXCIROB © 2026
+</div>
+
+
+</div>
+
+
+
+
+
+<script>
+
+const light=document.querySelector(".cursor");
+
+
+document.addEventListener("mousemove",(e)=>{
+
+light.style.left=e.clientX+"px";
+
+light.style.top=e.clientY+"px";
+
+
+});
+
+
+
+</script>
+
+
+</body>
+</html>
